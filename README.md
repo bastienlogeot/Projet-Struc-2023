@@ -99,7 +99,7 @@ sudo pacman -S base-devel pcre2 zlib openssl
 If you haven't cloned the repository yet, open a terminal, then type :
 
 ```bash
-git clone git@forge.uclouvain.be:LINFO2241/project-2023.git ARCHI_2023
+git clone git@forge.uclouvain.be:LINFO2241/project-2023-student.git ARCHI_2023
 cd ARCHI_2023
 export PROJECT_PATH=$PWD
 ```
