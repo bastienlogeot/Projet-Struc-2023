@@ -66,6 +66,39 @@ where XX is the id of the machine you want to connect to (didac01 for instance).
 
 If the connection doesn't work, please reach out to an assistant, we'll fix that.
 
+You are highly encouraged to use an ssh config to simplify the connection to the remote computers.
+
+~/.ssh/config :
+
+```bash
+Host studssh
+  HostName ssh.info.ucl.ac.be
+  User $YOURUSERNAME
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  IdentityFile ~/.ssh/$YOURKEY
+  ServerAliveInterval 60
+
+Host didac01
+  HostName didac01
+  User $YOURUSERNAME
+  ForwardX11 yes
+  ForwardAgent yes
+  StrictHostKeyChecking no
+  ProxyCommand ssh studssh -W %h:%p
+  ServerAliveInterval 60
+```
+
+From your computer, you can use
+
+```bash
+ssh didac01
+```
+
+***If you use VSCode as your text editor, the SSH extension is very convenient to code remotely. Use it***
+
 ## Prerequisites
 
 For this project, you'll need **Linux**. If your machine is running on Windows or MacOS, please do not panic.
