@@ -72,7 +72,7 @@ You are highly encouraged to use an ssh config to simplify the connection to the
 
 ```bash
 Host studssh
-  HostName ssh.info.ucl.ac.be
+  HostName studssh.info.ucl.ac.be
   User $YOURUSERNAME
   ForwardX11 yes
   ForwardX11Trusted yes
