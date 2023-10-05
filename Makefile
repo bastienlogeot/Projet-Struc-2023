@@ -1,2 +1,2 @@
 inginious:
-	tar -zcvf project.tar.gz project/nginx-conf project/server_implementation
+	tar --exclude='*.o' --exclude='*.so' -zcvf project.tar.gz project/

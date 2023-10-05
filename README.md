@@ -213,7 +213,7 @@ This will also show additional logs if you added --with-debug to the configurati
 
 ## Testing your server
 
-There is multiple ways to generate a HTTP request. Later in the project, you will use [WRK](https://github.com/wg/wrk) to automate traffic generation. For now we will use [WGET](https://www.gnu.org/software/wget/) to test your server. You can use the following command :
+There is multiple ways to generate a HTTP request. You can for instance, use the following command :
 
 
 ```bash
@@ -231,3 +231,38 @@ Other solutions can be :
 - **[curl](https://gist.github.com/subfuzion/08c5d85437d5d4f00e58)** : another command-based client similar to wget
 - **[Insomnia](https://insomnia.rest/)** : An application with a graphical user interface
 - **[Postman](https://www.postman.com/)** : Like Insomnia, but it's proprietary software
+
+## WRK
+
+Starting from the second phase of the project, you are expected to automate your measurements. We recommend you [WRK](https://github.com/wg/wrk). It enables the generation of custom HTTP traffic through LUA scripts and collects statistics such as the latency and the throughput. For this project we will use [this](https://github.com/delimitrou/DeathStarBench/tree/master/wrk2) version of WRK. This is an improved version with an open loop design as opposed to the original closed loop design. The client doesn't wait for the server responds to send new requests. We provide you this version in this project in the wrk2-DeathStarBench folder. To build it, you can execute the following commands :
+
+```bash
+cd $PROJECT_PATH
+git clone git@github.com:giltene/wrk2.git
+cd wrk2
+make
+cd ..
+./wrk2-DeathStarBench/wrk http://localhost:8888/  -d30s  --latency -R256 -s project/wrk_scripts/post.lua
+```
+
+-R256 specifies the rate: 256 request/s
+-d30s specifies the length of the experiment
+-s wrk_scripts/post.lua specifies the path to the lua script to use.
+
+You can type 
+
+```bash
+./wrk2-DeathStarBench/wrk --help
+```
+
+to get more information about the different options.
+
+**The --timeout option can be used to increase the timeout delay. This could be important when dealing with hard workloads to avoid excessive timeouts.**
+
+**Don't forget to run your server before using WRK to send requests !!!**
+
+
+## Deliverables
+In addition to the deliverable already specified in the project statement, there is one more deliverable.
+# Experiments & Plots 
+You will have to fill the executable bash script [make_plots.sh](./project/make_plots.sh). This script should rerun your experiments, collect new data to a previously blank [data/results.csv](./project/data/results.csv) file and then generate the corresponding plots in the [plots](./project/plots/) directory. Plotting should be done to the best of your abilities. If your plotting abilities are not that good yet, you can always take another look at the material available on moodle 😉. The tools available to your for that purpose are bash, python 3 (numpy, pandas, matplotlib), gnuplot. 
