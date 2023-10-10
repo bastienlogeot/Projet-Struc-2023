@@ -237,17 +237,15 @@ Other solutions can be :
 Starting from the second phase of the project, you are expected to automate your measurements. We recommend you [WRK](https://github.com/wg/wrk). It enables the generation of custom HTTP traffic through LUA scripts and collects statistics such as the latency and the throughput. For this project we will use [this](https://github.com/delimitrou/DeathStarBench/tree/master/wrk2) version of WRK. This is an improved version with an open loop design as opposed to the original closed loop design. The client doesn't wait for the server responds to send new requests. We provide you this version in this project in the wrk2-DeathStarBench folder. To build it, you can execute the following commands :
 
 ```bash
-cd $PROJECT_PATH
-git clone git@github.com:giltene/wrk2.git
-cd wrk2
+cd $PROJECT_PATH/wrk2-DeathStarBench
 make
 cd ..
 ./wrk2-DeathStarBench/wrk http://localhost:8888/  -d30s  --latency -R256 -s project/wrk_scripts/post.lua
 ```
 
--R256 specifies the rate: 256 request/s
--d30s specifies the length of the experiment
--s wrk_scripts/post.lua specifies the path to the lua script to use.
+- R256 specifies the rate: 256 request/s
+- d30s specifies the length of the experiment
+- s wrk_scripts/post.lua specifies the path to the lua script to use.
 
 You can type 
 
